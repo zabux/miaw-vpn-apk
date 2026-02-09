@@ -623,11 +623,10 @@ private void showInterstitial(){
 	@Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
-		openlogs();
 		toastutil = new ToastUtil(this);
 		    super.onCreate(savedInstanceState);
-		setContentView(R.layout.drawer_layout);
-		drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+		openlogs();
+		doLayout();
 		Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
 		//new TorrentDetection(this, torrentList).init();
 		mHandler = new Handler();
@@ -648,10 +647,40 @@ private void showInterstitial(){
 		initBytesInAndOut();
 		ensureServerSpinnerInitialized();
 		doUpdateLayout();
-		jointelegram();
-		updateapp(false);
+		postStartupTasks();
 		skartiprotect.CharlieProtect();
 
+	}
+
+	private void postStartupTasks() {
+		if (mHandler == null) {
+			mHandler = new Handler();
+		}
+		// Defer heavy or blocking UI work to avoid startup freeze
+		mHandler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						updateConfig(true);
+					} catch (Exception ignored) {}
+				}
+			}, 600);
+		mHandler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						jointelegram();
+					} catch (Exception ignored) {}
+				}
+			}, 1200);
+		mHandler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						updateapp(false);
+					} catch (Exception ignored) {}
+				}
+			}, 1800);
 	}
 
 	void initBytesInAndOut() {
@@ -913,7 +942,6 @@ inputPwShowPass = (ImageView) findViewById(R.id.activity_mainInputShowPassImageB
 		serverAdapter = new SpinnerAdapter(this, R.id.serverSpinner, serverList);
 		serverSpinner.setAdapter(serverAdapter);
 		loadServer();
-		updateConfig(true);
         
         
 		SharedPreferences sPrefs = mConfig.getPrefsPrivate();
@@ -1112,9 +1140,6 @@ inputPwShowPass = (ImageView) findViewById(R.id.activity_mainInputShowPassImageB
 	}
 
 
-
-	private void setStarterButton(Button starterButton, SocksHttpMainActivity p1) {
-	}
 
 	int loginVisibility = View.VISIBLE;
 
@@ -1603,6 +1628,11 @@ inputPwShowPass = (ImageView) findViewById(R.id.activity_mainInputShowPassImageB
 
 			}
 
+
+			starterButton.setText(resId);
+			if (connectionStatus != null) {
+				connectionStatus.setText(resId);
+			}
 
 		}
 	}
