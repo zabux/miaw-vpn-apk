@@ -16,6 +16,11 @@
         android:id="@+id/cfg2"
         android:icon="@drawable/cfg"
 		android:title="UPDATE CONFIG"/>
+
+	<item
+        android:id="@+id/update_app"
+        android:icon="@drawable/ic_autorenew_black_24dp"
+		android:title="UPDATE APP"/>
 		
 	<item
         android:id="@+id/apn"

@@ -163,29 +163,41 @@ implements View.OnClickListener,  SkStatus.StateListener
 	private boolean isConnected  = true;
     private CoordinatorLayout coordinatorLayout;
 
-	public void updateapp() {
+	public void updateapp(final boolean showNoUpdateToast) {
 		new Thread(new Runnable() {
 				@Override
 				public void run() {
 					try {
-						JSONObject release = fetchLatestRelease();
+						final JSONObject release = fetchLatestRelease();
 						if (release == null) {
+							if (showNoUpdateToast) {
+								runOnUiThread(new Runnable() {
+										@Override
+										public void run() {
+											Toast.makeText(SocksHttpMainActivity.this, "Update check failed", Toast.LENGTH_SHORT).show();
+										}
+									});
+							}
 							return;
 						}
 						int remoteVersionCode = parseRemoteVersionCode(release);
 						int currentVersionCode = getPackageManager()
 							.getPackageInfo(getPackageName(), 0).versionCode;
 						if (remoteVersionCode <= currentVersionCode) {
-							return;
-						}
-						final String apkUrl = findApkUrl(release);
-						if (apkUrl == null) {
+							if (showNoUpdateToast) {
+								runOnUiThread(new Runnable() {
+										@Override
+										public void run() {
+											Toast.makeText(SocksHttpMainActivity.this, "App already up to date", Toast.LENGTH_SHORT).show();
+										}
+									});
+							}
 							return;
 						}
 						runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
-									downloadAndInstallApk(apkUrl);
+									showUpdateDialog(release);
 								}
 							});
 					} catch (Exception e) {
@@ -193,6 +205,27 @@ implements View.OnClickListener,  SkStatus.StateListener
 					}
 				}
 			}).start();
+	}
+
+	private void showUpdateDialog(JSONObject release) {
+		final String apkUrl = findApkUrl(release);
+		if (apkUrl == null) {
+			Toast.makeText(this, "Update file not found", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		String versionName = release.optString("tag_name", "latest");
+		String notes = release.optString("body", "New update available");
+		new AlertDialog.Builder(this)
+			.setTitle("Update Available")
+			.setMessage("Version: " + versionName + "\n\n" + notes)
+			.setNegativeButton("Later", null)
+			.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						downloadAndInstallApk(apkUrl);
+					}
+				})
+			.show();
 	}
 
 	private JSONObject fetchLatestRelease() {
@@ -274,6 +307,14 @@ implements View.OnClickListener,  SkStatus.StateListener
 				return;
 			}
 		}
+		final ProgressDialog progress = new ProgressDialog(this);
+		progress.setTitle("Downloading Update");
+		progress.setMessage("Please wait...");
+		progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		progress.setIndeterminate(true);
+		progress.setCancelable(false);
+		progress.show();
+
 		new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -287,6 +328,16 @@ implements View.OnClickListener,  SkStatus.StateListener
 						conn.setReadTimeout(30000);
 						conn.setRequestProperty("User-Agent", "MiawVPN");
 						conn.connect();
+						final int total = conn.getContentLength();
+						runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									progress.setIndeterminate(total <= 0);
+									if (total > 0) {
+										progress.setMax(total);
+									}
+								}
+							});
 						in = conn.getInputStream();
 
 						File dir = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
@@ -297,8 +348,19 @@ implements View.OnClickListener,  SkStatus.StateListener
 						out = new FileOutputStream(apkFile);
 						byte[] buf = new byte[8192];
 						int len;
+						int downloaded = 0;
 						while ((len = in.read(buf)) > 0) {
 							out.write(buf, 0, len);
+							downloaded += len;
+							final int prog = downloaded;
+							if (total > 0) {
+								runOnUiThread(new Runnable() {
+										@Override
+										public void run() {
+											progress.setProgress(prog);
+										}
+									});
+							}
 						}
 						out.flush();
 
@@ -306,10 +368,18 @@ implements View.OnClickListener,  SkStatus.StateListener
 						runOnUiThread(new Runnable() {
 								@Override
 								public void run() {
+									progress.dismiss();
 									installApk(finalApk);
 								}
 							});
 					} catch (Exception ignored) {
+						runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									progress.dismiss();
+									Toast.makeText(SocksHttpMainActivity.this, "Download failed", Toast.LENGTH_SHORT).show();
+								}
+							});
 					} finally {
 						try {
 							if (in != null) {
@@ -556,7 +626,7 @@ private void showInterstitial(){
 		openlogs();
 		toastutil = new ToastUtil(this);
 		    super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
+		setContentView(R.layout.drawer_layout);
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 		Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
 		//new TorrentDetection(this, torrentList).init();
@@ -579,7 +649,7 @@ private void showInterstitial(){
 		ensureServerSpinnerInitialized();
 		doUpdateLayout();
 		jointelegram();
-		updateapp();
+		updateapp(false);
 		skartiprotect.CharlieProtect();
 
 	}
@@ -667,7 +737,7 @@ private void showInterstitial(){
             app_info_text.setText(header_text);
         }
         
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+		navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 // This method will trigger on item Click of navigation menu
                 @Override
                 public boolean onNavigationItemSelected(MenuItem menuItem)
@@ -727,17 +797,22 @@ private void showInterstitial(){
                                 }
                             }
                             break;
-						case R.id.hotspot:
+                        case R.id.hotspot:
 							Intent hostshare2 = new Intent(SocksHttpMainActivity.this, ProxySettings.class);
 							startActivity(hostshare2);
 							break;
 
 							//SPEEDTEST
-						case R.id.speedtest:
+                        case R.id.speedtest:
 							Intent speedtest2 = new Intent(SocksHttpMainActivity.this, MainActivity.class);
 							startActivity(speedtest2);
 							overridePendingTransition(R.anim.up_enter,R.anim.up_exit);
                             return true;  
+						
+						case R.id.update_app:
+							drawerLayout.closeDrawers();
+							updateapp(true);
+							return true;
 
                     }
 
@@ -1578,6 +1653,10 @@ inputPwShowPass = (ImageView) findViewById(R.id.activity_mainInputShowPassImageB
                 sk_restore();
                 break;
 
+			case R.id.update_app:
+				updateapp(true);
+				break;
+
 
 							case R.id.activity_mainInputShowPassImageButton:
 				isMostrarSenha = !isMostrarSenha;
@@ -2013,6 +2092,7 @@ inputPwShowPass = (ImageView) findViewById(R.id.activity_mainInputShowPassImageB
 		// Fallback for layouts without drawer (e.g. activity_home)
 		PopupMenu menu = new PopupMenu(this, v);
 		menu.getMenu().add(0, R.id.settings, 0, "SETTINGS");
+		menu.getMenu().add(0, R.id.update_app, 1, "UPDATE APP");
 		menu.getMenu().add(0, R.id.sk_restore, 1, "RESTORE");
 		menu.getMenu().add(0, R.id.sk_exit, 2, "EXIT");
 		menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -2023,6 +2103,9 @@ inputPwShowPass = (ImageView) findViewById(R.id.activity_mainInputShowPassImageB
 							Intent intentSettings = new Intent(SocksHttpMainActivity.this, ConfigGeralActivity.class);
 							startActivity(intentSettings);
 							overridePendingTransition(R.anim.up_enter,R.anim.up_exit);
+							return true;
+						case R.id.update_app:
+							updateapp(true);
 							return true;
 						case R.id.sk_restore:
 							sk_restore();
