@@ -2007,7 +2007,35 @@ inputPwShowPass = (ImageView) findViewById(R.id.activity_mainInputShowPassImageB
 		}
 		if (drawerLayout != null) {
 			drawerLayout.openDrawer(GravityCompat.START);
+			return;
 		}
+
+		// Fallback for layouts without drawer (e.g. activity_home)
+		PopupMenu menu = new PopupMenu(this, v);
+		menu.getMenu().add(0, R.id.settings, 0, "SETTINGS");
+		menu.getMenu().add(0, R.id.sk_restore, 1, "RESTORE");
+		menu.getMenu().add(0, R.id.sk_exit, 2, "EXIT");
+		menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+				@Override
+				public boolean onMenuItemClick(MenuItem item) {
+					switch (item.getItemId()) {
+						case R.id.settings:
+							Intent intentSettings = new Intent(SocksHttpMainActivity.this, ConfigGeralActivity.class);
+							startActivity(intentSettings);
+							overridePendingTransition(R.anim.up_enter,R.anim.up_exit);
+							return true;
+						case R.id.sk_restore:
+							sk_restore();
+							return true;
+						case R.id.sk_exit:
+							exit();
+							return true;
+						default:
+							return false;
+					}
+				}
+			});
+		menu.show();
 	}
 
 	public void showExitDialog() {
