@@ -10,7 +10,7 @@
 	<android.support.v4.widget.DrawerLayout
 		android:id="@+id/drawerLayout"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
+		android:layout_height="fill_parent"
 		android:background="?colorPrimary">
 
 		<LinearLayout
@@ -46,26 +46,6 @@
 			app:itemIconTint="@color/colorTextEnabled"
 			app:itemTextColor="@color/white"
 			app:menu="@menu/skartivpn">
-
-
-			<LinearLayout
-				android:gravity="bottom|center" 
-				android:orientation="vertical"
-               	android:layout_width="fill_parent" 
-				android:layout_height="fill_parent">
-
-				<TextView
-					android:textColor="#ff000000"
-					android:id="@+id/hidden"
-					android:layout_width="wrap_content"
-                    android:fontFamily="@font/skarti4"
-					android:layout_height="wrap_content" 
-					android:layout_marginBottom="10.0dip" 
-					android:text="COPYRIGHT BY MIAW VPN" />
-					
-
-			</LinearLayout>
-
 		</android.support.design.widget.NavigationView>
 		
 	</android.support.v4.widget.DrawerLayout>

@@ -51,5 +51,12 @@
 		android:textColor="#424242"
 		android:visibility="gone"/>
 
-</LinearLayout>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="COPYRIGHT BY MIAW VPN"
+		android:textColor="#ffffff"
+		android:textSize="12sp"
+		android:layout_marginTop="6dp"/>
 
+</LinearLayout>

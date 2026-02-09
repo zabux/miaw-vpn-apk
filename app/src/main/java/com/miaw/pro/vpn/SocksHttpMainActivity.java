@@ -720,7 +720,10 @@ private void showInterstitial(){
 		}
 */
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);       
-        NavigationView navigationView = (NavigationView) findViewById(R.id.shitstuff);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.shitstuff);
+		if (navigationView != null) {
+			navigationView.bringToFront();
+		}
 
         PackageInfo pinfo = Utils.getAppInfo(this);
         if (pinfo != null) {
@@ -732,11 +735,17 @@ private void showInterstitial(){
                 app_info_text1.setText(header_text);
      
 			
-            View view = navigationView.getHeaderView(0);
-            TextView app_info_text = view.findViewById(R.id.nav_headerAppVersion);
-            app_info_text.setText(header_text);
+            if (navigationView != null) {
+				View view = navigationView.getHeaderView(0);
+				TextView app_info_text = view.findViewById(R.id.nav_headerAppVersion);
+				app_info_text.setText(header_text);
+			}
         }
-        
+
+		if (navigationView == null) {
+			return;
+		}
+
 		navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 // This method will trigger on item Click of navigation menu
                 @Override
