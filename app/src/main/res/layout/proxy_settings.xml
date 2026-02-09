@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:ads="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<include
+		android:layout_width="fill_parent"
+		android:layout_height="55dp"
+		layout="@layout/toolbar_main"/>
+
+	<ScrollView
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+
+		<RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+
+			<LinearLayout
+				android:orientation="vertical"
+				android:layout_marginTop="60dp"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@drawable/background_rounded">
+
+				<TextView
+					android:fontFamily="@font/skarti4"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#FFFFFFFF"
+					android:textStyle="bold"
+					android:shadowColor="#FF000000"
+					android:shadowDy="5.0"
+					android:shadowRadius="1.5"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:typeface="serif"
+					android:layout_margin="10dp"
+					android:gravity="center"
+					android:textSize="23sp"
+					android:text="📡 HOTSPOT PROXY NO ROOT 📡"/>
+
+				<TextView
+					android:fontFamily="@font/skarti1"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textColor="#FFFFFFFF"
+					android:textStyle="bold"
+					android:typeface="serif"
+					android:gravity="center"
+					android:textSize="15sp"
+					android:autoLink="all"
+					android:text="@string/yt"
+					android:layout_margin="3dp"
+					android:textColorHint="#FFFFFFFF"
+					android:textColorLink="#FFFBFBFB"/>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="5dp"
+					android:padding="5dp">
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:background="@drawable/gris1">
+
+						<LinearLayout
+							android:orientation="vertical"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp">
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="110dp"
+								android:layout_height="100dp"
+								android:gravity="center"
+								android:background="@drawable/background_rounded"
+								android:layout_marginTop="4dp">
+
+								<LinearLayout
+									android:gravity="center"
+									android:background="@drawable/gris1"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:padding="5dp"
+									android:layout_marginLeft="5dp"
+									android:layout_marginRight="5dp">
+
+									<ToggleButton
+										android:textColor="#ffffffff"
+										android:id="@+id/cb_enable"
+										android:background="@drawable/toogle_option"
+										android:layout_width="match_parent"
+										android:layout_height="50.0dip"
+										android:textOn="  "
+										android:textOff="  "
+										android:text="ToggleButton"/>
+
+								</LinearLayout>
+
+							</LinearLayout>
+
+							<LinearLayout
+								android:orientation="horizontal"
+								android:layout_width="match_parent"
+								android:layout_height="18dp"/>
+
+							<View
+								android:background="@drawable/linea"
+								android:layout_width="match_parent"
+								android:layout_height="5dp"
+								android:layout_marginRight="3dp"
+								android:layout_marginLeft="3dp"/>
+
+							<LinearLayout
+								android:orientation="horizontal"
+								android:layout_width="match_parent"
+								android:layout_height="17dp"/>
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="100dp"
+								android:background="@drawable/background_rounded"
+								android:gravity="center">
+
+								<TextView
+									android:fontFamily="@font/skarti1"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:textColor="#FF000000"
+									android:textStyle="bold"
+									android:shadowColor="#FFFFFFFF"
+									android:shadowDy="5.0"
+									android:shadowRadius="1.5"
+									android:textAppearance="?android:attr/textAppearanceLarge"
+									android:typeface="serif"
+									android:gravity="center"
+									android:textSize="18sp"
+									android:text="STATUS :"/>
+
+								<TextView
+									android:fontFamily="@font/skarti4"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:textColor="#FFFFFFFF"
+									android:textStyle="bold"
+									android:shadowColor="#FF090909"
+									android:shadowDy="5.0"
+									android:shadowRadius="1.5"
+									android:textAppearance="?android:attr/textAppearanceLarge"
+									android:typeface="serif"
+									android:gravity="center"
+									android:textSize="15sp"
+									android:text="TERPUTUS"
+									android:layout_marginTop="5dp"
+									android:id="@+id/tv_info"/>
+
+							</LinearLayout>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:orientation="vertical"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="10dp"
+							android:background="@drawable/background_rounded">
+
+							<LinearLayout
+								android:orientation="vertical"
+								android:layout_width="match_parent"
+								android:layout_height="160dp"
+								android:layout_marginLeft="10dp"
+								android:layout_marginRight="10dp"
+								android:layout_marginTop="10dp"
+								android:gravity="top|left|center">
+
+								<TextView
+									android:fontFamily="@font/skarti4"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:textColor="#FFFFFFFF"
+									android:textStyle="bold"
+									android:shadowColor="#FF000000"
+									android:shadowDy="5.0"
+									android:shadowRadius="1.5"
+									android:textAppearance="?android:attr/textAppearanceLarge"
+									android:typeface="serif"
+									android:gravity="center"
+									android:textSize="20sp"
+									android:text="Tutorial"
+									android:layout_marginTop="5dp"/>
+
+								<TextView
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:text="1.Aktifkan Data &amp; Hotspot Dihp Pertama"
+									android:layout_marginTop="10dp"
+									android:textSize="12sp"
+									android:textColor="#FFFFFFFF"
+									android:textStyle="bold"/>
+
+								<TextView
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:text="2.Konekan VPN nya terlebih dahulu"
+									android:textSize="12sp"
+									android:textColor="#FFFFFFFF"
+									android:textStyle="bold"/>
+
+								<TextView
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:text="3.Aktifkan Wifi Di Device Yang Ingin Menerima Sambungan Koneksi Hotspot"
+									android:textSize="13sp"
+									android:textColor="#FFFFFFFF"
+									android:textStyle="bold"/>
+
+								<TextView
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:text="4.Lalu Edit Manual Proxy &amp; Port Di Device yg Menerima Koneksi"
+									android:textSize="13sp"
+									android:textColor="#FFFFFFFF"
+									android:textStyle="bold"/>
+
+								<TextView
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:text="5.setelah Semua Selesai, Silahkan Dicoba."
+									android:textSize="13sp"
+									android:textColor="#FFFFFFFF"
+									android:textStyle="bold"/>
+
+							</LinearLayout>
+
+							<Button
+								android:textSize="12.0dip"
+								android:id="@+id/zonawifi"
+								android:background="@drawable/ic_skartivpn"
+								android:clickable="true"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:text="TURN ON HOTSPOT"
+								ads:cardCornerRadius="5.0dip"
+								app:rippleColor="#FFA269C9"
+								android:textStyle="bold"
+								android:shadowColor="#FF000000"
+								android:shadowDy="5.0"
+								android:shadowRadius="1.5"
+								android:layout_gravity="center"
+								android:layout_marginTop="10dp"
+								android:layout_marginLeft="10dp"
+								android:layout_marginRight="10dp"
+								android:textColor="#FF9ABEBA"/>
+
+							<LinearLayout
+								android:orientation="horizontal"
+								android:layout_width="match_parent"
+								android:layout_height="20dp"/>
+
+						</LinearLayout>
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:orientation="horizontal"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"/>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="100dp"
+					android:layout_marginTop="10dp"
+					android:layout_margin="10dp"
+					android:background="@drawable/background_rounded"
+					android:gravity="center"
+					android:padding="3dp">
+
+					<LinearLayout
+						android:orientation="vertical"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content">
+
+						<LinearLayout
+							android:orientation="horizontal"
+							android:layout_width="fill_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="5.0dip">
+
+							<TextView
+								android:textStyle="bold"
+								android:textColor="#ffffffff"
+								android:layout_width="wrap_content"
+								android:layout_height="fill_parent"
+								android:text="Host Proxy :"/>
+
+							<LinearLayout
+								android:orientation="horizontal"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1.0"/>
+
+							<TextView
+								android:textStyle="bold"
+								android:textColor="#FFFFFFFF"
+								android:autoLink="web"
+								android:id="@+id/ip_layoutx"
+								android:focusable="true"
+								android:clickable="true"
+								android:layout_width="wrap_content"
+								android:layout_height="fill_parent"
+								android:layout_marginLeft="15.0dip"
+								android:textIsSelectable="true"
+								android:textColorHint="#FFFFFFFF"
+								android:textColorLink="#FFFFFFFF"/>
+
+						</LinearLayout>
+
+						<LinearLayout
+							android:orientation="horizontal"
+							android:layout_width="fill_parent"
+							android:layout_height="wrap_content"
+							android:layout_margin="5.0dip">
+
+							<TextView
+								android:textStyle="bold"
+								android:textColor="#ffffffff"
+								android:layout_width="wrap_content"
+								android:layout_height="fill_parent"
+								android:text="Port Proxy :"
+								android:gravity="center"
+								android:layout_marginTop="-3dp"/>
+
+							<LinearLayout
+								android:orientation="horizontal"
+								android:layout_width="fill_parent"
+								android:layout_height="fill_parent"
+								android:layout_weight="1.0"/>
+
+							<TextView
+								android:textStyle="bold"
+								android:layout_width="wrap_content"
+								android:layout_height="fill_parent"
+								android:layout_marginLeft="15.0dip"
+								android:text="8080"
+								android:id="@+id/textport"
+								android:gravity="center"
+								android:textColor="#FFFFFFFF"/>
+
+						</LinearLayout>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<LinearLayout
+					android:orientation="vertical"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:background="@null">
+
+					<Button
+						android:textSize="12.0dip"
+						android:textColor="#FFFFFFFF"
+						android:gravity="center"
+						android:layout_gravity="center"
+						android:id="@+id/restart"
+						android:background="@drawable/gris1"
+						android:clickable="true"
+						android:layout_width="220.0dip"
+						android:layout_height="wrap_content"
+						android:visibility="gone"
+						android:text="Powered By Awy_"
+						android:layout_weight="1.0"
+						android:layout_marginStart="10.0dip"
+						android:layout_marginEnd="10.0dip"
+						ads:cardCornerRadius="5.0dip"/>
+
+					<LinearLayout
+						android:gravity="center"
+						android:background="@null"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:visibility="gone">
+
+						<ImageView
+							android:gravity="center"
+							android:id="@+id/wifioff"
+							android:layout_width="50dp"
+							android:layout_height="50dp"
+							android:src="@drawable/btnapagado"
+							android:visibility="gone"/>
+
+						<ImageView
+							android:gravity="center"
+							android:id="@+id/wifion"
+							android:visibility="gone"
+							android:layout_width="50dp"
+							android:layout_height="50dp"
+							android:src="@drawable/btnprendido"/>
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+				<!--<com.google.android.gms.ads.AdView-->
+					xmlns:ads="http://schemas.android.com/apk/res-auto"
+					android:layout_gravity="bottom|center"
+					android:id="@+id/addsmew"
+					android:visibility="gone"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="0.0dip"
+					android:layout_alignParentBottom="true"
+					android:layout_centerHorizontal="true"
+					ads:adSize="SMART_BANNER"
+					ads:adUnitId="@string/adsbanner"
+					android:layout_marginLeft="100dp"
+					android:layout_marginRight="100dp"/>
+
+			</LinearLayout>
+
+		</RelativeLayout>
+
+	</ScrollView>
+
+</RelativeLayout>
+

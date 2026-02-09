@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.miaw.pro"
+   android:installLocation="auto">
+    
+       <supports-screens
+                  android:smallScreens="true"
+                  android:normalScreens="true"
+                  android:largeScreens="true"
+                  android:xlargeScreens="true" />
+                  
+                  
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+	<uses-permission android:name="android.permission.GET_TASKS" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+	<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+	
+
+    <application
+        android:name="com.miaw.pro.vpn.SocksHttpApp"
+        android:allowBackup="true"
+        android:icon="@drawable/icons"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:icon"
+        android:resizeableActivity="true"
+		android:requestLegacyExternalStorage="true">
+		
+		<!--- Activities -->
+
+		<activity android:name="com.miaw.pro.vpn.LauncherActivity"
+            android:theme="@style/SplashScreenTheme" 
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        
+       
+		
+
+		<activity
+			android:name="com.miaw.pro.vpn.SocksHttpMainActivity"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:label="Application Error"
+            android:name="com.miaw.pro.tunnel.ExceptionActivity"/>
+
+        <activity
+            android:name="com.miaw.pro.vpn.activities.ConfigGeralActivity"
+            android:parentActivityName="com.miaw.pro.vpn.SocksHttpMainActivity"
+            android:label="@string/settings"/>
+
+        <receiver android:name="com.miaw.pro.tunnel.MainReceiver">
+
+            <intent-filter>
+
+                <action android:name="com.miaw.pro.tunnel.MainReceiver.ACTION_SERVICE_STOP">
+
+                </action>
+
+                <action android:name="com.miaw.pro.tunnel.MainReceiver.ACTION_SERVICE_RESTART">
+
+                </action>
+
+            </intent-filter>
+
+        </receiver>
+
+        <service
+            android:label="@string/app_name"
+            android:name="com.miaw.pro.tunnel.tunnel.vpn.TunnelVpnService"
+            android:exported="false"
+            android:enabled="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+
+            <intent-filter>
+
+                <action android:name="android.net.VpnService"/>
+
+            </intent-filter>
+
+        </service>
+
+        <service
+            android:label="@string/app_name"
+            android:name="com.miaw.pro.tunnel.SocksHttpService"
+            android:stopWithTask="false"
+            android:exported="false">
+
+        </service>
+
+        <activity
+            android:name="com.miaw.pro.vpn.activities.AboutActivity"
+            android:parentActivityName="com.miaw.pro.vpn.SocksHttpMainActivity"
+            android:label="@string/about"/>
+   
+	<activity android:name="egcodes.com.speedtest.MainActivity"/>
+
+		<meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ffffffffff"/>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="false"/>
+	
+		<service android:name="me.dawson.proxyserver.ui.ProxyService" /> 
+		<activity
+            android:name="me.dawson.proxyserver.ui.ProxySettings"
+            android:parentActivityName="com.pandaxvpn.http.PandaxMainActivity"
+            android:label="@string/app_name" /> 
+
+		<uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
+
+		<provider
+			android:name="android.support.v4.content.FileProvider"
+			android:authorities="${applicationId}.fileprovider"
+			android:exported="false"
+			android:grantUriPermissions="true">
+			<meta-data
+				android:name="android.support.FILE_PROVIDER_PATHS"
+				android:resource="@xml/file_paths" />
+		</provider>
+
+    </application>
+
+</manifest>

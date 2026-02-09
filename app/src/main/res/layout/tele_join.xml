@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:ads="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:padding="5dp"
+	android:background="@drawable/background_rounded"
+	android:layout_margin="10dp">
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp">
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="50dp"
+			android:layout_marginTop="15dp">
+
+			<LinearLayout
+				android:layout_height="50dp"
+				android:layout_width="match_parent"
+				android:orientation="horizontal"
+				android:paddingLeft="10dp"
+				android:paddingTop="5dp"
+				android:gravity="left|center">
+
+				<RelativeLayout
+					android:layout_height="45dp"
+					android:layout_width="45dp"
+					android:background="@drawable/abc"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content"
+					android:text="Info Pembelian Akun Premium"
+					android:textSize="23sp"
+					android:fontFamily="@font/skarti4"
+					android:paddingLeft="10dp"
+					android:gravity="center"
+					android:textStyle="bold"
+					android:textColor="#FFFFF2F2"
+					android:layout_marginLeft="5dp"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:gravity="center"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10.0dip">
+
+			<TextView
+				android:typeface="serif"
+				android:autoLink="web"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="Aplikasi ini Adalah Apk VPN premium auto inject yg mudah untuk digunakan,apk ini membutuhkan auth ( user and pass )."
+				android:textSize="16sp"
+				android:textColor="#FFFFFFFF"
+				android:textStyle="bold"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:orientation="vertical"
+			android:layout_margin="10dp"
+			android:gravity="center">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="fill_parent"
+				android:text="Silahkan Hubungi Admin Untuk Membeli !"
+				android:typeface="normal"
+				android:textSize="15sp"
+				android:textColor="#FFFF1C1C"
+				android:textStyle="bold"/>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
+

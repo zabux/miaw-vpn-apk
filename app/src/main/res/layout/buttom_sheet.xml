@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/bottom_sheet"
+	android:layout_width="match_parent"
+	android:layout_height="550dp"
+	android:layout_alignParentBottom="true"
+	android:orientation="vertical"
+	app:behavior_hideable="true"
+	app:behavior_peekHeight="50dp"
+	app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:orientation="horizontal"
+		android:clickable="true"
+		android:foreground="?android:selectableItemBackground"
+		android:gravity="center"
+		android:background="@drawable/backgroundbuttonsheet"
+		android:id="@+id/bshl">
+
+		<ImageView
+			android:id="@+id/ivLogsDown"
+			android:tint="#ffffff"
+			android:src="@drawable/d_"
+			android:layout_width="40dp"
+			android:layout_height="35dp"/>
+
+	</RelativeLayout>
+
+	<android.support.v7.widget.CardView
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<include
+			layout="@layout/activity_logs"/>
+
+	</android.support.v7.widget.CardView>
+
+</LinearLayout>
+

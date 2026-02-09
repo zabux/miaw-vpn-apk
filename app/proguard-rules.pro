@@ -1,0 +1,24 @@
+-repackageclasses
+-ignorewarnings
+-dontnote
+-dontwarn
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-verbose
+-dontoptimize
+-dontpreverify
+
+# Keep filenames and line numbers for stack traces
+#-keepattributes SourceFile,LineNumberTable
+
+-dontwarn com.google.ar.core.**
+
+# Code obfuscation
+-keepclassmembers class com.miaw.pro.vpn** { <fields>; }
+
+-keep class com.trilead.ssh2.** { *; }
+-keep class com.miaw.pro.vpn.preference.** { *; }
+-keep class com.miaw.pro.vpn.SocksHttpMainActivity.** { *; }
+-keep class com.miaw.pro.vpn.SocksHttpApp.** { *; }
+-keep class net.i2p.crypto.** { *; }
+-keep class org.conscrypt.** { *; }

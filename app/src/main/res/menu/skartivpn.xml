@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+	
+	<item
+        android:id="@+id/vii"
+        android:icon="@drawable/vi"
+		android:title="BUY PREMIUM"/>
+		
+		<item
+        android:id="@+id/cfg1"
+        android:icon="@drawable/cf"
+		android:title="IMPORT CONFIG"/>
+		
+	<item
+        android:id="@+id/cfg2"
+        android:icon="@drawable/cfg"
+		android:title="UPDATE CONFIG"/>
+		
+	<item
+        android:id="@+id/apn"
+        android:icon="@drawable/sim"
+        android:title="APN SETTINGS"/>
+    
+    <item
+        android:id="@+id/miPhoneConfg"
+        android:icon="@drawable/radio"
+        android:title="RADIO NETWORK"/>
+    
+	<item
+        android:id="@+id/hotspot"
+        android:icon="@drawable/hotspot"
+        android:title="HOTSPOT NO ROOT"/>
+
+	<item
+        android:id="@+id/speedtest"
+        android:icon="@drawable/speed"
+		android:title="SPEEDTEST INTERNET"/>
+	
+    <item
+        android:id="@+id/close_Drawers"
+        android:icon="@drawable/exiit"
+		android:title="BACK TO HOME"/>
+	
+		
+    
+</menu>
